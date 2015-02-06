@@ -2,8 +2,9 @@
 <resources>
 
     <string name="app_name">ToDo</string>
-    <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
-    <string name="text_empty_list">There is no items</string>
+    <string name="text_empty_list">You haven\'t added anything yet.</string>
+    <string name="text_checkbox_done">Done</string>
+    <string name="action_add">Add</string>
 
 </resources>
