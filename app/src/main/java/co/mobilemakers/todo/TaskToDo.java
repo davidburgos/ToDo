@@ -14,7 +14,6 @@ public class TaskToDo {
     public TaskToDo(String mDescription) {
         this.mDescription = mDescription;
         this.mDone = false;
-        SimpleDateFormat sdf = new SimpleDateFormat(DATE_FORMAT);
         this.mCreationDate = "";
     }
 
@@ -24,10 +23,6 @@ public class TaskToDo {
 
     public String getmDescription() {
         return mDescription;
-    }
-
-    public void setmDescription(String mDescription) {
-        this.mDescription = mDescription;
     }
 
     public String getmCreationDate() {
