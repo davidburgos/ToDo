@@ -6,5 +6,8 @@
     <string name="text_empty_list">You haven\'t added anything yet.</string>
     <string name="text_checkbox_done">Done</string>
     <string name="action_add">Add</string>
+    <string name="title_activity_create_task">Create New Task</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="text_title">Description:</string>
 
 </resources>

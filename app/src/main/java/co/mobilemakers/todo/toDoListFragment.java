@@ -1,7 +1,7 @@
 package co.mobilemakers.todo;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v4.app.ListFragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
@@ -21,6 +21,7 @@ import java.util.List;
  */
 public class toDoListFragment extends ListFragment implements SwipeRefreshLayout.OnRefreshListener {
 
+    private final static int REQUEST_CODE = 0;
     SwipeRefreshLayout mSwipeRefreshLayout;
     TaskToDoAdapter mAdapter;
     List<TaskToDo> mEntries;
@@ -78,6 +79,8 @@ public class toDoListFragment extends ListFragment implements SwipeRefreshLayout
     }
 
     private void addItemsToList() {
+        Intent createTaskActivity = new Intent(getActivity(), CreateTaskActivity.class);
+        startActivityForResult(createTaskActivity, REQUEST_CODE);
         TaskToDo taskToDo = new TaskToDo(getString(R.string.app_name));
         mEntries.add(taskToDo);
         mAdapter.notifyDataSetChanged();
