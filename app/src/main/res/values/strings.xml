@@ -7,7 +7,8 @@
     <string name="text_checkbox_done">Done</string>
     <string name="action_add">Add</string>
     <string name="title_activity_create_task">Create New Task</string>
-    <string name="hello_world">Hello world!</string>
     <string name="text_title">Description:</string>
+    <string name="canceled_message">Task cancelled</string>
+    <string name="task_uncompleted">Task %s uncompleted.</string>
 
 </resources>

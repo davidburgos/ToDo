@@ -1,5 +1,6 @@
 package co.mobilemakers.todo;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
@@ -66,7 +67,8 @@ public class toDoListFragment extends ListFragment implements SwipeRefreshLayout
 
         switch (id){
             case R.id.action_add:
-                addItemsToList();
+                Intent createTaskActivity = new Intent(getActivity(), CreateTaskActivity.class);
+                startActivityForResult(createTaskActivity, REQUEST_CODE);
                 handled = true;
                 break;
         }
@@ -78,10 +80,21 @@ public class toDoListFragment extends ListFragment implements SwipeRefreshLayout
 
     }
 
-    private void addItemsToList() {
-        Intent createTaskActivity = new Intent(getActivity(), CreateTaskActivity.class);
-        startActivityForResult(createTaskActivity, REQUEST_CODE);
-        TaskToDo taskToDo = new TaskToDo(getString(R.string.app_name));
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        switch (resultCode){
+            case Activity.RESULT_OK:
+                createNewTask(data.getStringExtra(CreateTaskActivity.NEW_TASK_DESCRIPTION));
+                break;
+            case Activity.RESULT_CANCELED:
+                Toast.makeText(getActivity(), R.string.canceled_message, Toast.LENGTH_LONG).show();
+                break;
+        }
+    }
+
+    private void createNewTask(String title) {
+        TaskToDo taskToDo = new TaskToDo(title);
         mEntries.add(taskToDo);
         mAdapter.notifyDataSetChanged();
     }
@@ -98,7 +111,8 @@ public class toDoListFragment extends ListFragment implements SwipeRefreshLayout
     @Override
     public void onRefresh() {
         mSwipeRefreshLayout.setRefreshing(true);
-        Toast.makeText(getActivity(),"loading...",Toast.LENGTH_LONG).show();
+        Toast.makeText(getActivity(),"loading...",Toast.LENGTH_SHORT).show();
+        mAdapter.notifyDataSetChanged();
         mSwipeRefreshLayout.setRefreshing(false);
     }
 }

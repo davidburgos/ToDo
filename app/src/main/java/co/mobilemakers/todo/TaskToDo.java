@@ -3,19 +3,23 @@ package co.mobilemakers.todo;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-/**
- * Created by David on 05/02/2015.
- */
+
 public class TaskToDo {
 
+    public final static String DATE_FORMAT ="MMMM dd yyyy - HH:mm";
     String mDescription;
-    Date mCreation;
+    String mCreationDate;
     Boolean mDone;
 
     public TaskToDo(String mDescription) {
         this.mDescription = mDescription;
         this.mDone = false;
-        this.mCreation = new Date();
+        SimpleDateFormat sdf = new SimpleDateFormat(DATE_FORMAT);
+        this.mCreationDate = "";
+    }
+
+    public void setmCreationDate(String mCreationDate) {
+        this.mCreationDate = mCreationDate;
     }
 
     public String getmDescription() {
@@ -26,12 +30,8 @@ public class TaskToDo {
         this.mDescription = mDescription;
     }
 
-    public Date getmCreation() {
-        return mCreation;
-    }
-
-    public void setmCreation(Date mCreation) {
-        this.mCreation = mCreation;
+    public String getmCreationDate() {
+        return mCreationDate;
     }
 
     public Boolean getmDone() {
@@ -44,7 +44,7 @@ public class TaskToDo {
 
     @Override
     public String toString() {
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd_HHmmss");
+        SimpleDateFormat sdf = new SimpleDateFormat(DATE_FORMAT);
         String currentDateAndTime = sdf.format(new Date());
         return mDescription + " " + (mDone?"(Done)":"") +" Created:" + currentDateAndTime;
     }
